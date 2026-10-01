@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prendre rendez-vous · Claire Delmas, naturopathe à Bordeaux</title>
+  <meta name="description" content="Réservez votre consultation de naturopathie en ligne : choisissez le jour et l'heure, confirmation immédiate.">
+  <!-- Démonstration : hors des moteurs de recherche. Le vrai site sera indexé. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="Prendre rendez-vous · Claire Delmas, naturopathe à Bordeaux">
+  <meta property="og:description" content="Réservez votre consultation de naturopathie en ligne : choisissez le jour et l'heure, confirmation immédiate.">
+  <meta name="theme-color" content="#FBF6EE">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20aria-hidden%3D%22true%22%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%2224%22%20fill%3D%22%234F6B55%22%2F%3E%3Cpath%20d%3D%22M24%2036%20C24%2026%2018%2018%2012%2015%20C14%2026%2018%2033%2024%2036Z%20M24%2036%20C24%2026%2030%2018%2036%2015%20C34%2026%2030%2033%2024%2036Z%22%20fill%3D%22%23E4EBDF%22%2F%3E%3Cpath%20d%3D%22M24%2036%20V20%22%20stroke%3D%22%23E4EBDF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="page-rdv">
+  <div class="bandeau-demo">Démonstration préparée pour votre annonce : le nom, les avis et les tarifs sont fictifs, et les dessins tiennent la place de vos photos.</div>
+  <header class="entete">
+    <div class="conteneur">
+      <a class="marque" href="index.html" aria-label="Claire Delmas, accueil"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#4F6B55"/><path d="M24 36 C24 26 18 18 12 15 C14 26 18 33 24 36Z M24 36 C24 26 30 18 36 15 C34 26 30 33 24 36Z" fill="#E4EBDF"/><path d="M24 36 V20" stroke="#E4EBDF" stroke-width="2" stroke-linecap="round"/></svg><span class="marque-nom"><strong>Claire Delmas</strong><span>Naturopathe à Bordeaux</span></span></a>
+      <button class="bouton-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navigation"><span></span><span></span><span></span></button>
+      <nav class="nav" id="navigation" aria-label="Navigation principale">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="consultations.html">Consultations et tarifs</a></li>
+          <li><a href="a-propos.html">Mon approche</a></li>
+          <li><a class="bouton" href="rendez-vous.html" aria-current="page">Prendre rendez-vous</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+    <section style="padding-top:clamp(32px,5vw,64px)">
+      <div class="etroit">
+        <span class="surtitre">Rendez-vous en ligne</span>
+        <h1>Choisissez <em>votre créneau</em></h1>
+        <p class="intro">Les créneaux affichés sont ceux qui sont vraiment libres. La confirmation arrive par e-mail dès la réservation.</p>
+        <script type="application/json" id="consultations">[{"id":"bilan","nom":"Bilan de vitalité","duree":90,"prix":75,"lieu":"Au cabinet","feminin":false},{"id":"suivi","nom":"Consultation de suivi","duree":60,"prix":55,"lieu":"Au cabinet","feminin":true},{"id":"visio","nom":"Consultation en visio","duree":60,"prix":55,"lieu":"En visio","feminin":true}]</script>
+        <div class="resa" id="resa" style="margin-top:28px">
+          <ol class="resa-progression" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+
+          <div class="resa-etape">
+            <h2>1. Quelle consultation ?</h2>
+            <div class="choix" id="choix-consultation"></div>
+          </div>
+
+          <div class="resa-etape" hidden>
+            <h2>2. Quel jour, quelle heure ?</h2>
+            <p class="recap" id="consultation-choisie"></p>
+            <div class="jours" id="jours" aria-label="Jours disponibles"></div>
+            <p style="margin:18px 0 0;font-weight:600;color:var(--encre)">Créneaux du <span id="jour-choisi"></span></p>
+            <div class="creneaux" id="creneaux"></div>
+            <div class="resa-nav"><button type="button" class="retour" data-retour="0">← Changer de consultation</button></div>
+          </div>
+
+          <div class="resa-etape" hidden>
+            <h2>3. Vos coordonnées</h2>
+            <p class="recap" id="recap"></p>
+            <form id="form-resa" novalidate>
+              <div class="champs">
+                <div><label for="prenom">Prénom</label><input id="prenom" name="prenom" autocomplete="given-name" required></div>
+                <div><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="family-name" required></div>
+                <div><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+                <div><label for="telephone">Téléphone</label><input id="telephone" name="telephone" type="tel" autocomplete="tel" required></div>
+                <div class="large"><label class="case"><input type="checkbox" name="premiere" checked> C'est ma première consultation avec vous</label></div>
+                <div class="large"><label for="message">Un mot avant notre rencontre ? (facultatif)</label><textarea id="message" name="message" rows="3"></textarea></div>
+              </div>
+              <p class="mention">Vos coordonnées servent seulement à gérer ce rendez-vous. Démonstration : rien n'est envoyé ni enregistré ailleurs que dans votre navigateur.</p>
+              <div class="resa-nav"><button type="button" class="retour" data-retour="1">← Changer d'horaire</button><button class="bouton" type="submit">Confirmer le rendez-vous</button></div>
+            </form>
+          </div>
+
+          <div class="resa-etape confirmation" hidden>
+            <div class="coche" aria-hidden="true">✓</div>
+            <h2>C'est réservé</h2>
+            <p id="confirmation-texte"></p>
+            <p>Ce créneau n'est plus proposé aux autres visiteurs.</p>
+            <div class="mail-apercu"><p style="margin:0 0 8px;font-weight:600;color:var(--encre)">L'e-mail que reçoit votre consultant</p><div id="mail-client"></div></div>
+            <div class="mail-apercu cote-pro"><p style="margin:0 0 8px;font-weight:600;color:var(--encre)">Ce que vous recevez, vous, la praticienne</p><div id="mail-pro"></div></div>
+            <div class="resa-nav" style="justify-content:center"><button type="button" class="bouton second" id="recommencer">Réserver un autre rendez-vous</button></div>
+          </div>
+        </div>
+        <div class="prudence" style="margin-top:28px"><p><strong>Pour vous, côté cabinet.</strong> Sur votre site, ce module est un outil de réservation relié à votre agenda (Google, Apple ou Outlook). Vous fixez vos horaires, vos durées et vos pauses ; les créneaux pris disparaissent ; chaque rendez-vous arrive dans votre agenda. Plus d'allers-retours par SMS.</p></div>
+      </div>
+    </section>
+  </main>
+  <footer class="pied">
+    <div class="conteneur">
+      <div><h3>Claire Delmas</h3><p>Naturopathe, quartier des Chartrons, Bordeaux.<br>Du mardi au samedi, sur rendez-vous.</p></div>
+      <div><h3>Pages</h3><ul><li><a href="consultations.html">Consultations et tarifs</a></li><li><a href="a-propos.html">Mon approche</a></li><li><a href="rendez-vous.html">Prendre rendez-vous</a></li></ul></div>
+      <div><h3>Contact</h3><ul><li>05 00 00 00 00</li><li>contact@exemple.fr</li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div>
+      <p class="bas">La naturopathie ne remplace pas un suivi médical. Elle ne pose pas de diagnostic et ne modifie jamais un traitement prescrit.</p>
+    </div>
+  </footer>
+  <div class="barre-mobile"><a class="bouton" href="rendez-vous.html">Prendre rendez-vous</a></div>
+  <script src="assets/site.js"></script>
+</body>
+</html>
